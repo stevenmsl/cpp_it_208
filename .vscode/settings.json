@@ -16,6 +16,13 @@
     "xmemory": "cpp",
     "ostream": "cpp",
     "xlocnum": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "iterator": "cpp",
+    "memory": "cpp",
+    "streambuf": "cpp",
+    "type_traits": "cpp",
+    "xiosbase": "cpp",
+    "xtr1common": "cpp",
+    "xtree": "cpp"
   }
 }

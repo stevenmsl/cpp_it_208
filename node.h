@@ -9,9 +9,9 @@ namespace sol1032
 {
     struct Node
     {
-        vector<Node *> next;
+        vector<Node *> chars;
         bool isWord;
-        Node() : isWord(false), next(vector<Node *>(26, nullptr)){};
+        Node() : isWord(false), chars(vector<Node *>(26, nullptr)){};
     };
 }
 #endif

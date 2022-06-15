@@ -14,8 +14,7 @@ using namespace std;
 
 /*takeaways
   - build a Trie tree
-  - root node is a dummy node. Prefixes
-    start from root->next[idx]
+
 */
 
 void Trie::insert(string s)
@@ -24,9 +23,9 @@ void Trie::insert(string s)
   for (auto c : s)
   {
     auto idx = c - 'a';
-    if (visit->next[idx] == nullptr)
-      visit->next[idx] = new Node();
-    visit = visit->next[idx];
+    if (visit->chars[idx] == nullptr)
+      visit->chars[idx] = new Node();
+    visit = visit->chars[idx];
   }
   visit->isWord = true;
 }
@@ -41,8 +40,14 @@ bool Trie::search(string key)
   for (auto i = 0; i < n; i++)
   {
     auto idx = key[i] - 'a';
-    visit = visit->next[idx];
-    if (visit == nullptr && i < n - 1)
+    /* why we move to the visit->chars[idx] first?
+       - visit needs to point to the last char in the
+         key after we exit the loop so we can access
+         the isWord property associated with the last
+         char node
+    */
+    visit = visit->chars[idx];
+    if (visit == nullptr)
       return false;
   }
   return visit->isWord;
@@ -54,8 +59,8 @@ bool Trie::startsWith(string prefix)
   for (auto i = 0; i < n; i++)
   {
     auto idx = prefix[i] - 'a';
-    visit = visit->next[idx];
-    if (visit == nullptr && i < n - 1)
+    visit = visit->chars[idx];
+    if (visit == nullptr)
       return false;
   }
   return true;
